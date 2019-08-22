@@ -19,6 +19,7 @@ weatherForm.addEventListener('submit', (e) => {
   message4.textContent = '';
   message5.textContent = '';
   message6.textContent = '';
+  icon.removeAttribute('src');
 
   fetch(`/weather?address=${location}`).then((response) => {
     response.json().then((data) => {
@@ -45,13 +46,12 @@ weatherForm.addEventListener('submit', (e) => {
           icon.setAttribute('src', '/img/weather_3.png');
         } else if (data.forecast.summary.toLowerCase().includes('rainy')) {
           icon.setAttribute('src', '/img/weather_5.png');
-        } else if (data.forecast.summary.toLowerCase().includes('sunny')) {
+        } else if (data.forecast.summary.toLowerCase().includes('clear')) {
           icon.setAttribute('src', '/img/weather_1.png');
         }
       }
     });
   });
 });
-console.log(date);
 
 document.querySelector('#icon-container').appendChild(icon);
