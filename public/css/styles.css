@@ -72,3 +72,7 @@ button {
 a  img {
   width: 50px;
 }
+
+#forecast-icon {
+  width: 180px;
+}
