@@ -8,6 +8,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-image: url('../img/bg.png');
+  background-size: cover;
 }
 
 .main-content {
@@ -15,10 +17,11 @@ body {
 }
 
 footer {
-  color: #888888;
+  color: #141414;
   border-top: 1px solid #eeeeee;
   margin-top: 16px;
   padding: 16px 0;
+  font-size: 20px;
 }
 
 header {
@@ -32,13 +35,15 @@ h1 {
 }
 
 header a {
-  color: #888888;
+  color: #141414;
   margin-right: 16px;
   text-decoration: none;
 }
 
 .portrait {
   width: 250px;
+  border-radius: 20px;
+  opacity: 0.6;
 }
 
 input {
@@ -52,4 +57,18 @@ button {
   background: #888888;
   color: #fff;
   padding: 8px;
+}
+
+.about {
+  margin-top: 15px;
+}
+
+.about > a {
+  text-decoration: none;
+  color: #888888;
+  padding: 15px;
+}
+
+a  img {
+  width: 50px;
 }
