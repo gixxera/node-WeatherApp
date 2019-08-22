@@ -28,7 +28,7 @@ weatherForm.addEventListener('submit', (e) => {
         message3.textContent = `It is currently ${data.forecast.temp.toFixed()} degrees out.`;
         message4.textContent = `This high today is ${data.forecast.high.toFixed()} degrees.`;
         message5.textContent = `This low today is ${data.forecast.low.toFixed()} degrees.`;
-        message6.textContent = `There is a ${data.forecast.precipPropability}% chance of rain.`;
+        message6.textContent = `There is a ${data.forecast.precipProbability}% chance of rain.`;
       }
     });
   });
