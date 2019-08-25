@@ -17,13 +17,19 @@
       <input placeholder="Add Location">
       <button>Search</button>
     </form>
-    <div id="icon-container"></div>
     <p id="mess1"></p>
-    <p id="mess2"></p>
-    <p id="mess3"></p>
-    <p id="mess4"></p>
-    <p id="mess5"></p>
-    <p id="mess6"></p>
+    <div id="forecast-container">
+      <p id="mess2"></p>
+      <div class="forecast">
+        <img id="icon" src="" alt="">
+        <p id="mess3"></p>
+      </div>
+      <div class="forecast" id="min-max">
+        <p class="temps" id="mess4"></p>
+        <p class="temps" id="mess5"></p>
+      </div>
+      <p id="mess6"></p>
+    </div>
   </div>
 
   {{>footer}}

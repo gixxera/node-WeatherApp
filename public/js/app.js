@@ -6,9 +6,8 @@ const message3 = document.querySelector('#mess3');
 const message4 = document.querySelector('#mess4');
 const message5 = document.querySelector('#mess5');
 const message6 = document.querySelector('#mess6');
-const icon = document.createElement('img');
+const icon = document.querySelector('#icon');
 const date = new Date().getHours();
-icon.setAttribute('id', 'forecast-icon');
 
 weatherForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -22,16 +21,17 @@ weatherForm.addEventListener('submit', (e) => {
   icon.removeAttribute('src');
 
   fetch(`/weather?address=${location}`).then((response) => {
+
     response.json().then((data) => {
       if (data.error) {
         message1.textContent = data.error;
       } else {
         message1.textContent = data.location;
         message2.textContent = data.forecast.summary;
-        message3.textContent = `It is currently ${data.forecast.temp.toFixed()} degrees out.`;
-        message4.textContent = `This high today is ${data.forecast.high.toFixed()} degrees.`;
-        message5.textContent = `This low today is ${data.forecast.low.toFixed()} degrees.`;
-        message6.textContent = `There is a ${data.forecast.precipProbability}% chance of rain.`;
+        message3.textContent = `${data.forecast.temp.toFixed()}°C`;
+        message4.textContent = `${data.forecast.low.toFixed()}°C`;
+        message5.textContent = `${data.forecast.high.toFixed()}°C`;
+        message6.textContent = `${data.forecast.precipProbability}% chance of rain.`;
       }
       if ((date > 0 && date < 6) || (date > 20)) {
         if (data.forecast.summary.toLowerCase().includes('cloudy')) {
@@ -53,5 +53,3 @@ weatherForm.addEventListener('submit', (e) => {
     });
   });
 });
-
-document.querySelector('#icon-container').appendChild(icon);
