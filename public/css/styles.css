@@ -149,15 +149,15 @@ a  img {
     width: 200px;
   }
   #daily {
-    width: 95%;
+    width: 100%;
   }
   #icon {
-    width: 250px;
+    width: 280px;
   }
   .forecast {
-    width: 77%;
+    width: 100%;
   }
   #forecast-container {
-    width: 315px;
+    width: 100%;
   }
 }

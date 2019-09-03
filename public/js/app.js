@@ -34,7 +34,7 @@ document.querySelector('form').addEventListener('submit', (e) => {
         dailyForecast.appendChild(temp);
         dailyForecast.appendChild(img);
         const weekDay = new Date(day.time * 1000).toString().split(' ');
-        days.textContent = `${weekDay[0]} ${weekDay[1]} ${weekDay[2]}`;
+        days.textContent = `${weekDay[0]}, ${weekDay[1]} ${weekDay[2]}`;
         temp.textContent = `${day.temperatureHigh.toFixed()}°`;
 
         daily.appendChild(dailyForecast);
