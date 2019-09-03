@@ -28,8 +28,11 @@ document.querySelector('form').addEventListener('submit', (e) => {
         const dailyForecast = document.createElement('div');
         let temp = document.createElement('p');
         let days = document.createElement('p');
+        let img = document.createElement('img');
+        img.setAttribute('src', `/img/${day.icon}.png`)
         dailyForecast.appendChild(days);
         dailyForecast.appendChild(temp);
+        dailyForecast.appendChild(img);
         const weekDay = new Date(day.time * 1000).toString().split(' ');
         days.textContent = `${weekDay[0]} ${weekDay[1]} ${weekDay[2]}`;
         temp.textContent = `${day.temperatureHigh.toFixed()}°`;
