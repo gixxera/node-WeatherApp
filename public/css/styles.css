@@ -135,11 +135,29 @@ a  img {
 }
 
 ::-webkit-scrollbar{
-  height: 4px;
+  height: 10px;
   width: 4px;
-  background: rgb(214, 196, 255);
+  background: rgb(234, 224, 255);
 }
 ::-webkit-scrollbar-thumb:horizontal{
-  background: rgb(110, 146, 253);
+  background: rgb(118, 166, 255);
   border-radius: 10px;
+}
+
+@media all and (max-width: 400px) {
+  input:focus {
+    width: 200px;
+  }
+  #daily {
+    width: 95%;
+  }
+  #icon {
+    width: 250px;
+  }
+  .forecast {
+    width: 77%;
+  }
+  #forecast-container {
+    width: 315px;
+  }
 }
