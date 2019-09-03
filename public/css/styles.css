@@ -138,6 +138,7 @@ a  img {
   height: 10px;
   width: 4px;
   background: rgb(234, 224, 255);
+  border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:horizontal{
   background: rgb(118, 166, 255);
