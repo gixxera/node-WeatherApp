@@ -7,28 +7,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="./css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 </head>
 
 <body>
   <div class="main-content">
     {{>header}}
-    <p>Get your weather forecast now!</p>
     <form>
       <input placeholder="Add Location">
       <button>Search</button>
     </form>
-    <p id="mess1"></p>
+    <p class="msg" id="mess1"></p>
+    <p class="msg" id="mess2"></p>
     <div id="forecast-container">
-      <p id="mess2"></p>
+      <div id="daily">
+
+      </div>
       <div class="forecast">
         <img id="icon" src="" alt="">
-        <p id="mess3"></p>
       </div>
       <div class="forecast" id="min-max">
-        <p class="temps" id="mess4"></p>
-        <p class="temps" id="mess5"></p>
+        <p class="temps msg" id="mess4"></p>
+        <p class="msg" id="mess3"></p>
+        <p class="temps msg" id="mess5"></p>
       </div>
-      <p id="mess6"></p>
     </div>
   </div>
 

@@ -14,7 +14,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-image: url('../img/bg.png');
+  background-image: linear-gradient(to right bottom, rgba(177, 177, 177, 0.8), rgba(110, 146, 253, 0.8)), url('../img/bg.png');
   background-size: cover;
 }
 
@@ -56,6 +56,13 @@ input {
   border: 1px solid #cccccc;
   padding: 8px;
   margin: 15px 0px;
+  border-radius: 20px;
+  width: 200px;
+  transition: width .35s ease-in-out;
+}
+
+input:focus {
+  width: 350px;
 }
 
 button {
@@ -64,6 +71,7 @@ button {
   background: #888888;
   color: #fff;
   padding: 8px;
+  border-radius: 20px;
 }
 
 .about {
@@ -85,11 +93,11 @@ a  img {
 }
 
 #icon {
-  width: 180px;
+  width: 300px;
 }
 
 .forecast {
-  margin-top: 10px;
+  margin-top: 5px;
   display: flex;
   justify-content: space-between;
 }
@@ -99,9 +107,8 @@ a  img {
 }
 
 #mess3 {
-  font-size: 70px;
+  font-size: 90px;
   margin-top: 50px;
-  color: #fff;
 }
 
 .temps {
@@ -110,4 +117,29 @@ a  img {
   margin-bottom: 10px;
 }
 
+.msg {
+  color: #fff;
+}
 
+#daily {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  margin-top: 20px;
+  text-align: center;
+}
+
+#daily > div {
+  flex: 0 0 auto;
+  padding: 0 5px;
+}
+
+::-webkit-scrollbar{
+  height: 4px;
+  width: 4px;
+  background: rgb(214, 196, 255);
+}
+::-webkit-scrollbar-thumb:horizontal{
+  background: rgb(110, 146, 253);
+  border-radius: 10px;
+}

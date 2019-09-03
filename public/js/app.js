@@ -1,25 +1,16 @@
-const weatherForm = document.querySelector('form');
-const search = document.querySelector('input');
 const message1 = document.querySelector('#mess1');
 const message2 = document.querySelector('#mess2');
 const message3 = document.querySelector('#mess3');
 const message4 = document.querySelector('#mess4');
 const message5 = document.querySelector('#mess5');
-const message6 = document.querySelector('#mess6');
 const icon = document.querySelector('#icon');
-const date = new Date().getHours();
+const daily = document.querySelector('#daily');
 
-weatherForm.addEventListener('submit', (e) => {
+document.querySelector('form').addEventListener('submit', (e) => {
   e.preventDefault();
-  const location = search.value;
+  daily.innerHTML = '';
+  const location = document.querySelector('input').value;
   message1.textContent = 'Loading...';
-  message2.textContent = '';
-  message3.textContent = '';
-  message4.textContent = '';
-  message5.textContent = '';
-  message6.textContent = '';
-  icon.removeAttribute('src');
-
   fetch(`/weather?address=${location}`).then((response) => {
 
     response.json().then((data) => {
@@ -28,28 +19,23 @@ weatherForm.addEventListener('submit', (e) => {
       } else {
         message1.textContent = data.location;
         message2.textContent = data.forecast.summary;
-        message3.textContent = `${data.forecast.temp.toFixed()}°C`;
-        message4.textContent = `${data.forecast.low.toFixed()}°C`;
-        message5.textContent = `${data.forecast.high.toFixed()}°C`;
-        message6.textContent = `${data.forecast.precipProbability}% chance of rain.`;
+        message3.textContent = `${data.forecast.temp.toFixed()}°`;
+        message4.textContent = `⤓${data.forecast.low.toFixed()}°`;
+        message5.textContent = `⤒${data.forecast.high.toFixed()}°`;
       }
-      if ((date > 0 && date < 6) || (date > 20)) {
-        if (data.forecast.summary.toLowerCase().includes('cloudy')) {
-          icon.setAttribute('src', '/img/weather_4.png');
-        } else if (data.forecast.summary.toLowerCase().includes('rainy')) {
-          icon.setAttribute('src', '/img/weather_6.png');
-        } else if (data.forecast.summary.toLowerCase().includes('clear')) {
-          icon.setAttribute('src', '/img/weather_2.png');
-        }
-      } else {
-        if (data.forecast.summary.toLowerCase().includes('cloudy')) {
-          icon.setAttribute('src', '/img/weather_3.png');
-        } else if (data.forecast.summary.toLowerCase().includes('rainy')) {
-          icon.setAttribute('src', '/img/weather_5.png');
-        } else if (data.forecast.summary.toLowerCase().includes('clear')) {
-          icon.setAttribute('src', '/img/weather_1.png');
-        }
-      }
+      icon.setAttribute('src', `/img/${data.forecast.icon}.png`);
+      data.forecast.daily.forEach((day) => {
+        const dailyForecast = document.createElement('div');
+        let temp = document.createElement('p');
+        let days = document.createElement('p');
+        dailyForecast.appendChild(days);
+        dailyForecast.appendChild(temp);
+        const weekDay = new Date(day.time * 1000).toString().split(' ');
+        days.textContent = `${weekDay[0]} ${weekDay[1]} ${weekDay[2]}`;
+        temp.textContent = `${day.temperatureHigh.toFixed()}°`;
+
+        daily.appendChild(dailyForecast);
+      });
     });
   });
 });

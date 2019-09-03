@@ -14,7 +14,9 @@ const forecast = (latitude, longitude, callback) => {
         temp: body.currently.temperature,
         high: body.daily.data[0].temperatureHigh,
         low: body.daily.data[0].temperatureLow,
-        precipProbability: body.currently.precipProbability
+        precipProbability: body.currently.precipProbability,
+        icon: body.currently.icon,
+        daily: body.daily.data.slice(1)
       });
     }
   });
