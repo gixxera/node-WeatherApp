@@ -5,6 +5,10 @@
   padding: 0;
 }
 
+*:focus {
+  outline: none;
+}
+
 body {
   color: #333333;
   font-family: arial;
