@@ -34,14 +34,6 @@ app.get('/about', (req, res) => {
   });
 });
 
-app.get('/help', (req, res) => {
-  res.render('help', {
-    message: 'Help page',
-    title: 'Help',
-    name: 'Milen Minchev'
-  });
-});
-
 app.get('/weather', (req, res) => {
   const address = req.query.address;
   if (!address) {
@@ -66,14 +58,6 @@ app.get('/weather', (req, res) => {
       });
     });
 
-  });
-});
-
-app.get('/help/*', (req, res) => {
-  res.render('404', {
-    title: '404',
-    name: 'Milen Minchev',
-    errorMessage: 'Help article not found.'
   });
 });
 

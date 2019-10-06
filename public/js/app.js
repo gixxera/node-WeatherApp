@@ -27,7 +27,9 @@ document.querySelector('form').addEventListener('submit', (e) => {
       data.forecast.daily.forEach((day) => {
         const dailyForecast = document.createElement('div');
         let temp = document.createElement('p');
+        temp.className = 'dailyTemp';
         let days = document.createElement('p');
+        days.className = 'dailyTemp'
         let img = document.createElement('img');
         img.setAttribute('src', `/img/${day.icon}.png`)
         dailyForecast.appendChild(days);
