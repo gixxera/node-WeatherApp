@@ -9,6 +9,7 @@ const daily = document.querySelector('#daily');
 document.querySelector('form').addEventListener('submit', (e) => {
   e.preventDefault();
   daily.innerHTML = '';
+  message2.textContent = '';
   const location = document.querySelector('input').value;
   message1.textContent = 'Loading...';
   fetch(`/weather?address=${location}`).then((response) => {
@@ -16,31 +17,35 @@ document.querySelector('form').addEventListener('submit', (e) => {
     response.json().then((data) => {
       if (data.error) {
         message1.textContent = data.error;
+        message3.textContent = '';
+        message4.textContent = '';
+        message5.textContent = '';
+        icon.removeAttribute('src');
       } else {
         message1.textContent = data.location;
         message2.textContent = data.forecast.summary;
         message3.textContent = `${data.forecast.temp.toFixed()}°`;
         message4.textContent = `⤓${data.forecast.low.toFixed()}°`;
         message5.textContent = `⤒${data.forecast.high.toFixed()}°`;
-      }
-      icon.setAttribute('src', `/img/${data.forecast.icon}.png`);
-      data.forecast.daily.forEach((day) => {
-        const dailyForecast = document.createElement('div');
-        let temp = document.createElement('p');
-        temp.className = 'dailyTemp';
-        let days = document.createElement('p');
-        days.className = 'dailyTemp'
-        let img = document.createElement('img');
-        img.setAttribute('src', `/img/${day.icon}.png`)
-        dailyForecast.appendChild(days);
-        dailyForecast.appendChild(temp);
-        dailyForecast.appendChild(img);
-        const weekDay = new Date(day.time * 1000).toString().split(' ');
-        days.textContent = `${weekDay[0]}, ${weekDay[1]} ${weekDay[2]}`;
-        temp.textContent = `${day.temperatureHigh.toFixed()}°`;
+        icon.setAttribute('src', `/img/${data.forecast.icon}.png`);
+        data.forecast.daily.forEach((day) => {
+          const dailyForecast = document.createElement('div');
+          let temp = document.createElement('p');
+          temp.className = 'dailyTemp';
+          let days = document.createElement('p');
+          days.className = 'dailyTemp'
+          let img = document.createElement('img');
+          img.setAttribute('src', `/img/${day.icon}.png`)
+          dailyForecast.appendChild(days);
+          dailyForecast.appendChild(temp);
+          dailyForecast.appendChild(img);
+          const weekDay = new Date(day.time * 1000).toString().split(' ');
+          days.textContent = `${weekDay[0]}, ${weekDay[1]} ${weekDay[2]}`;
+          temp.textContent = `${day.temperatureHigh.toFixed()}°`;
 
-        daily.appendChild(dailyForecast);
-      });
+          daily.appendChild(dailyForecast);
+        });
+      }
     });
   });
 });
