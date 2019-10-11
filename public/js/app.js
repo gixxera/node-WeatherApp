@@ -6,21 +6,12 @@ const message5 = document.querySelector('#mess5');
 const icon = document.querySelector('#icon');
 const daily = document.querySelector('#daily');
 
-document.querySelector('form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  daily.innerHTML = '';
-  message2.textContent = '';
-  const location = document.querySelector('input').value;
-  message1.textContent = 'Loading...';
-  fetch(`/weather?address=${location}`).then((response) => {
+const weather = (address) => {
+  fetch(`/weather?address=${address}`).then((response) => {
 
     response.json().then((data) => {
       if (data.error) {
         message1.textContent = data.error;
-        message3.textContent = '';
-        message4.textContent = '';
-        message5.textContent = '';
-        icon.removeAttribute('src');
       } else {
         message1.textContent = data.location;
         message2.textContent = data.forecast.summary;
@@ -47,5 +38,29 @@ document.querySelector('form').addEventListener('submit', (e) => {
         });
       }
     });
+  })
+}
+
+if (!navigator.geolocation) {
+  alert('Your browser does not support geolocation!');
+} else {
+  navigator.geolocation.getCurrentPosition((position) => {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+
+    weather(`${longitude},${latitude}`);
   });
+}
+
+document.querySelector('form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  daily.innerHTML = '';
+  message1.textContent = 'Loading...';
+  message2.textContent = '';
+  message3.textContent = '';
+  message4.textContent = '';
+  message5.textContent = '';
+  icon.removeAttribute('src');
+  const location = document.querySelector('input').value;
+  weather(location);
 });
